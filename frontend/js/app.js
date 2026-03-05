@@ -176,7 +176,7 @@
             })
             .catch(function() {
                 // Fallback: mailto
-                var mailtoUrl = 'mailto:contact@youjue.ai'
+                var mailtoUrl = 'mailto:jennie@youjue.ai'
                     + '?subject=' + encodeURIComponent('[官網聯繫] ' + formData.subject)
                     + '&body=' + encodeURIComponent(
                         '姓名：' + formData.name + '\n'
