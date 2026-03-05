@@ -38,7 +38,7 @@ async def submit_contact(data: ContactRequest):
     if resend_api_key:
         try:
             import httpx
-            notify_email = os.getenv("NOTIFY_EMAIL", "contact@youjue.ai")
+            notify_email = os.getenv("NOTIFY_EMAIL", "jennie@youjue.ai")
             async with httpx.AsyncClient() as client:
                 await client.post(
                     "https://api.resend.com/emails",
