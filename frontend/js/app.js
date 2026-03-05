@@ -77,7 +77,7 @@
         });
     }
 
-    // ---- Scroll Reveal Animation (with stagger) ----
+    // ---- Scroll Reveal Animation ----
     function initScrollReveal() {
         var revealElements = document.querySelectorAll(
             '.value-card, .philosophy-card, .industry-card, .future-card, ' +
@@ -92,14 +92,6 @@
         var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
-                    // Stagger siblings: find index among revealed siblings
-                    var parent = entry.target.parentElement;
-                    var siblings = parent.querySelectorAll('.reveal');
-                    var index = 0;
-                    for (var i = 0; i < siblings.length; i++) {
-                        if (siblings[i] === entry.target) { index = i; break; }
-                    }
-                    entry.target.style.transitionDelay = (index * 0.1) + 's';
                     entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
                 }
@@ -114,33 +106,23 @@
         });
     }
 
-    // ---- Hero Particles (multi-color for dark theme) ----
+    // ---- Hero Particles ----
     function initHeroParticles() {
         var container = document.getElementById('heroParticles');
         if (!container) return;
 
-        var colors = [
-            'rgba(99,102,241,',   // indigo
-            'rgba(6,182,212,',    // cyan
-            'rgba(236,72,153,',   // pink
-            'rgba(16,185,129,',   // emerald
-        ];
-
-        for (var i = 0; i < 40; i++) {
+        for (var i = 0; i < 30; i++) {
             var particle = document.createElement('div');
-            var color = colors[Math.floor(Math.random() * colors.length)];
-            var size = Math.random() * 3 + 1;
             particle.style.cssText =
                 'position:absolute;' +
-                'width:' + size + 'px;' +
-                'height:' + size + 'px;' +
-                'background:' + color + (Math.random() * 0.4 + 0.1) + ');' +
+                'width:' + (Math.random() * 4 + 2) + 'px;' +
+                'height:' + (Math.random() * 4 + 2) + 'px;' +
+                'background:rgba(99,102,241,' + (Math.random() * 0.3 + 0.1) + ');' +
                 'border-radius:50%;' +
                 'left:' + (Math.random() * 100) + '%;' +
                 'top:' + (Math.random() * 100) + '%;' +
-                'animation:particleFloat ' + (Math.random() * 8 + 6) + 's ease-in-out infinite;' +
-                'animation-delay:' + (Math.random() * 5) + 's;' +
-                'box-shadow:0 0 ' + (size * 3) + 'px ' + color + '0.3);';
+                'animation:particleFloat ' + (Math.random() * 6 + 4) + 's ease-in-out infinite;' +
+                'animation-delay:' + (Math.random() * 4) + 's;';
             container.appendChild(particle);
         }
 
@@ -148,38 +130,10 @@
         var style = document.createElement('style');
         style.textContent =
             '@keyframes particleFloat {' +
-            '  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }' +
-            '  25% { transform: translate(' + (Math.random() * 60 - 30) + 'px, ' + (Math.random() * 60 - 30) + 'px) scale(1.5); opacity: 0.6; }' +
-            '  50% { transform: translate(' + (Math.random() * 40 - 20) + 'px, ' + (Math.random() * 40 - 20) + 'px) scale(1); opacity: 0.8; }' +
-            '  75% { transform: translate(' + (Math.random() * 60 - 30) + 'px, ' + (Math.random() * 60 - 30) + 'px) scale(1.3); opacity: 0.4; }' +
+            '  0%, 100% { transform: translate(0, 0); opacity: 0.3; }' +
+            '  50% { transform: translate(' + (Math.random() * 40 - 20) + 'px, ' + (Math.random() * 40 - 20) + 'px); opacity: 0.8; }' +
             '}';
         document.head.appendChild(style);
-    }
-
-    // ---- Mouse Glow Effect on Cards ----
-    function initCardGlow() {
-        document.addEventListener('mousemove', function(e) {
-            var cards = document.querySelectorAll(
-                '.value-card, .philosophy-card, .industry-card, .future-card, ' +
-                '.tech-card, .contact-card, .about-card-intro, .contact-form-wrapper, .arch-diagram'
-            );
-            cards.forEach(function(card) {
-                var rect = card.getBoundingClientRect();
-                var x = e.clientX - rect.left;
-                var y = e.clientY - rect.top;
-
-                if (x >= -50 && x <= rect.width + 50 && y >= -50 && y <= rect.height + 50) {
-                    card.style.setProperty('--mouse-x', x + 'px');
-                    card.style.setProperty('--mouse-y', y + 'px');
-                    card.style.background =
-                        'radial-gradient(300px circle at ' + x + 'px ' + y + 'px, ' +
-                        'rgba(99, 102, 241, 0.06), transparent 60%), ' +
-                        'rgba(255, 255, 255, 0.04)';
-                } else {
-                    card.style.background = 'rgba(255, 255, 255, 0.04)';
-                }
-            });
-        });
     }
 
     // ---- Contact Form (Web3Forms) ----
@@ -244,7 +198,7 @@
         });
     }
 
-    // ---- Toast Notification (dark theme) ----
+    // ---- Toast Notification ----
     function showToast(type, message) {
         var existing = document.querySelector('.toast-notification');
         if (existing) existing.remove();
@@ -258,28 +212,25 @@
 
         toast.innerHTML = '<i class="fas ' + icon + '"></i><span>' + message + '</span>';
 
-        // Toast styles (dark theme compatible)
+        // Toast styles
         toast.style.cssText =
             'position:fixed;top:90px;right:24px;z-index:9999;' +
             'display:flex;align-items:center;gap:10px;' +
             'padding:16px 24px;border-radius:12px;' +
             'font-size:0.95rem;font-weight:500;' +
-            'box-shadow:0 10px 30px rgba(0,0,0,0.4);' +
+            'box-shadow:0 10px 30px rgba(0,0,0,0.15);' +
             'animation:fadeInUp 0.4s ease;' +
-            'max-width:400px;backdrop-filter:blur(12px);';
+            'max-width:400px;';
 
         if (type === 'success') {
-            toast.style.background = 'rgba(16, 185, 129, 0.15)';
-            toast.style.color = '#34D399';
-            toast.style.border = '1px solid rgba(16, 185, 129, 0.3)';
+            toast.style.background = '#D1FAE5';
+            toast.style.color = '#065F46';
         } else if (type === 'error') {
-            toast.style.background = 'rgba(239, 68, 68, 0.15)';
-            toast.style.color = '#F87171';
-            toast.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+            toast.style.background = '#FEE2E2';
+            toast.style.color = '#991B1B';
         } else {
-            toast.style.background = 'rgba(99, 102, 241, 0.15)';
-            toast.style.color = '#818CF8';
-            toast.style.border = '1px solid rgba(99, 102, 241, 0.3)';
+            toast.style.background = '#DBEAFE';
+            toast.style.color = '#1E40AF';
         }
 
         document.body.appendChild(toast);
@@ -311,7 +262,6 @@
     document.addEventListener('DOMContentLoaded', function() {
         initScrollReveal();
         initHeroParticles();
-        initCardGlow();
         initContactForm();
         handleNavScroll();
         handleBackToTop();
