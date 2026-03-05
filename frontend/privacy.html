@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隱私權政策 — 宥爵智能科技</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .legal-content { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .legal-content h1 { font-size: 2rem; margin-bottom: 8px; }
+        .legal-content .legal-date { color: var(--text-muted); margin-bottom: 40px; }
+        .legal-content h2 { font-size: 1.3rem; margin: 32px 0 12px; color: var(--primary-dark); }
+        .legal-content p, .legal-content li { color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px; }
+        .legal-content ul { padding-left: 24px; }
+        .legal-content a { color: var(--primary); }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon"><i class="fas fa-brain"></i></div>
+                <div class="logo-text">
+                    <span class="logo-main">宥爵智能科技</span>
+                    <span class="logo-sub">YouJue Intelligent Technology</span>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <div class="legal-content">
+        <h1>隱私權政策</h1>
+        <p class="legal-date">最後更新日期：2025 年 3 月</p>
+
+        <p>宥爵智能科技有限公司（以下簡稱「本公司」）重視您的隱私權。本隱私權政策說明我們如何蒐集、使用、儲存及保護您的個人資料。</p>
+
+        <h2>一、資料蒐集範圍</h2>
+        <p>我們可能蒐集以下類型的資料：</p>
+        <ul>
+            <li><strong>帳號資料</strong>：姓名、電子信箱、密碼（加密儲存）</li>
+            <li><strong>使用資料</strong>：登入時間、使用頻率、功能使用統計</li>
+            <li><strong>上傳檔案</strong>：您主動上傳至平台的 CSV、Excel、PDF、Word、PPT、圖片等檔案</li>
+            <li><strong>對話記錄</strong>：您與 AI 助理的對話內容</li>
+            <li><strong>付款資訊</strong>：由第三方支付服務商（Stripe）處理，本公司不儲存信用卡號碼</li>
+            <li><strong>聯繫資訊</strong>：您透過官網聯繫表單提供的姓名、信箱、公司名稱、訊息內容</li>
+        </ul>
+
+        <h2>二、資料使用方式</h2>
+        <ul>
+            <li>提供及改善我們的產品服務</li>
+            <li>處理您的訂閱與付款</li>
+            <li>回覆您的諮詢與技術支援</li>
+            <li>發送服務相關通知（如額度提醒、到期提醒、週報）</li>
+            <li>分析使用趨勢以改善產品體驗（匿名化統計）</li>
+        </ul>
+
+        <h2>三、第三方服務</h2>
+        <p>我們使用以下第三方服務處理您的資料：</p>
+        <ul>
+            <li><strong>Google Cloud / Gemini AI</strong> — AI 語言模型推論（對話內容）</li>
+            <li><strong>Supabase</strong> — 資料庫儲存與檔案備份（PostgreSQL）</li>
+            <li><strong>Pinecone</strong> — 向量搜尋（文件語義索引）</li>
+            <li><strong>Stripe</strong> — 支付處理（信用卡交易）</li>
+            <li><strong>Resend</strong> — Email 通知發送</li>
+            <li><strong>Sentry</strong> — 錯誤追蹤（不包含個人資料）</li>
+        </ul>
+
+        <h2>四、資料安全措施</h2>
+        <ul>
+            <li>密碼使用 bcrypt 加密儲存</li>
+            <li>備份使用 AES-256-GCM 加密</li>
+            <li>資料傳輸全程使用 HTTPS/TLS 加密</li>
+            <li>JWT 認證 + 帳號鎖定機制</li>
+            <li>每日自動備份 + Supabase PITR 7 天災難復原</li>
+        </ul>
+
+        <h2>五、您的權利</h2>
+        <p>您有以下權利：</p>
+        <ul>
+            <li><strong>存取</strong>：查看我們持有的您的個人資料</li>
+            <li><strong>更正</strong>：要求更正不正確的資料</li>
+            <li><strong>刪除</strong>：要求刪除您的帳號及相關資料</li>
+            <li><strong>可攜</strong>：要求匯出您的資料</li>
+        </ul>
+        <p>如需行使上述權利，請聯繫 <a href="mailto:contact@youjue.ai">contact@youjue.ai</a>。</p>
+
+        <h2>六、Cookie 使用</h2>
+        <p>我們使用 localStorage 儲存您的登入狀態和偏好設定，不使用第三方追蹤 Cookie。</p>
+
+        <h2>七、政策更新</h2>
+        <p>本隱私權政策可能不定期更新。重大變更時，我們會透過平台公告或 Email 通知您。</p>
+
+        <h2>八、聯繫方式</h2>
+        <p>
+            宥爵智能科技有限公司<br>
+            YouJue Intelligent Technology Co., Ltd.<br>
+            Email：<a href="mailto:contact@youjue.ai">contact@youjue.ai</a><br>
+            網站：<a href="https://www.youjue.ai">www.youjue.ai</a>
+        </p>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top:none;padding-top:0;">
+                <p>&copy; 2025 宥爵智能科技有限公司. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
