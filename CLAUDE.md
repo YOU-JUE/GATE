@@ -12,7 +12,8 @@
 
 - **官網網址**：www.youjue.ai（Hostinger 網域）
 - **前端**：HTML/CSS/JS（純靜態），部署於 Vercel
-- **後端**：Python FastAPI，部署於 Railway（Docker）
+- **後端**：Python FastAPI（備用，尚未部署）
+- **聯繫表單**：Web3Forms（純前端，免費 250 封/月）
 - **架構標準**：基於【YJ-標準架構01】
 
 ---
@@ -24,7 +25,7 @@
 | 中文名稱 | 宥爵智能科技有限公司 |
 | 英文名稱 | YouJue Intelligent Technology Co., Ltd. |
 | 官網 | www.youjue.ai |
-| Email | contact@youjue.ai |
+| Email | jennie@youjue.ai |
 | 核心理念 | 創新、有溫度、老師傅經驗傳承給 AI |
 | 旗艦產品 | 珍妮 Ai（Jennie AI）— jennie.youjue.ai |
 
@@ -37,11 +38,11 @@
 | 平台 | 角色 | 職責 |
 |------|------|------|
 | **Vercel** | 前端主機 | 靜態 HTML/CSS/JS 託管，自動 HTTPS + CDN |
-| **Railway** | 後端主機 | Docker 容器運行 FastAPI |
-| **GitHub** | 版控 + CI/CD | 程式碼管理、自動測試、健康檢查 |
+| **Web3Forms** | 聯繫表單 | 純前端表單提交服務，免費 250 封/月 |
+| **GitHub** | 版控 + CI/CD | 程式碼管理、自動測試 |
+| **Hostinger** | 網域 + Email | www.youjue.ai DNS 管理 + jennie@youjue.ai 信箱 |
+| **Railway** | 後端主機（備用） | Docker 容器運行 FastAPI（尚未部署） |
 | **Sentry** | 錯誤追蹤 | 後端未捕獲例外自動上報（選用） |
-| **Resend** | Email 發送 | 聯繫表單通知信（選用） |
-| **Hostinger** | 網域 | www.youjue.ai DNS 管理 |
 
 ### 架構拓撲
 
@@ -49,13 +50,14 @@
 使用者瀏覽器
     │
     ├── 前端頁面 ──── Vercel（靜態託管 + CDN）
-    │                    │ API 呼叫（CORS）
-    │                    ▼
-    └── 後端 API ──── Railway（Docker + Uvicorn）
-                        │
-                        └── Resend（Email 通知）
-
-    監控層：GitHub Actions（健康檢查）+ Sentry（錯誤追蹤）
+    │                    │
+    │                    ├── 聯繫表單 POST ──── Web3Forms API
+    │                    │                        │
+    │                    │                        └── Email 通知 → jennie@youjue.ai
+    │                    │
+    │                    └── (未來擴充) ──── Railway 後端 API
+    │
+    監控層：GitHub Actions（CI 自動測試）
 ```
 
 ---
@@ -119,31 +121,56 @@ CLAUDE.md           — 本文件（交接日誌）
 
 ---
 
-## 後端 API
+## 聯繫表單（Web3Forms）
+
+### 服務資訊
+
+| 項目 | 內容 |
+|------|------|
+| 服務商 | Web3Forms（web3forms.com） |
+| 方案 | Free（免費，250 封/月，無時間限制） |
+| 帳號 | jennie@youjue.ai |
+| Access Key | `4baa0302-03cf-4bd5-b3b1-4d3d7eb698a2` |
+| 收件信箱 | jennie@youjue.ai（Hostinger Email） |
+| 管理後台 | web3forms.com → Sign in |
+
+### 運作方式
+
+1. 使用者在官網填寫聯繫表單，按「送出訊息」
+2. 前端 JS 直接 POST 到 `https://api.web3forms.com/submit`
+3. Web3Forms 將表單內容以 Email 寄到 jennie@youjue.ai
+4. 頁面顯示綠色成功 toast，全程不離開頁面
+
+### 表單欄位
+
+| 欄位 | 對應 ID | 必填 |
+|------|---------|------|
+| 姓名 | `contactName` | 是 |
+| 電子信箱 | `contactEmail` | 是 |
+| 公司名稱 | `contactCompany` | 否 |
+| 主旨 | `contactSubject` | 是（下拉選單） |
+| 訊息 | `contactMessage` | 是 |
+
+### 主旨選項對照
+
+| value | 顯示文字 | Email 主旨 |
+|-------|---------|-----------|
+| `product` | 產品諮詢 | 【官網聯繫】產品諮詢 |
+| `enterprise` | 企業合作洽談 | 【官網聯繫】企業合作洽談 |
+| `technical` | 技術支援 | 【官網聯繫】技術支援 |
+| `media` | 媒體採訪 | 【官網聯繫】媒體採訪 |
+| `other` | 其他 | 【官網聯繫】其他 |
+
+---
+
+## 後端 API（備用，尚未部署至 Railway）
 
 | 端點 | 方法 | 說明 |
 |------|------|------|
 | `/` | GET | API 資訊 |
 | `/health` | GET | 健康檢查 |
 | `/health/detailed` | GET | 詳細健康檢查 |
-| `/api/contact` | POST | 聯繫表單提交 |
-
-### 聯繫表單 API
-
-```json
-POST /api/contact
-{
-    "name": "姓名",
-    "email": "email@example.com",
-    "company": "公司名稱（選填）",
-    "subject": "product|enterprise|technical|media|other",
-    "message": "訊息內容"
-}
-```
-
-- 成功時回傳 `{ "status": "success" }`
-- 若設定了 `RESEND_API_KEY`，自動發送通知 Email 到 `NOTIFY_EMAIL`
-- 前端 fallback：API 不可用時自動開啟 `mailto:` 連結
+| `/api/contact` | POST | 聯繫表單提交（目前由 Web3Forms 取代） |
 
 ---
 
@@ -155,7 +182,7 @@ POST /api/contact
 | `ALLOWED_ORIGINS` | 否 | 額外 CORS 白名單（逗號分隔） |
 | `RESEND_API_KEY` | 否 | Resend Email API Key |
 | `FROM_EMAIL` | 否 | 寄件人（預設 `noreply@youjue.ai`） |
-| `NOTIFY_EMAIL` | 否 | 收件人（預設 `contact@youjue.ai`） |
+| `NOTIFY_EMAIL` | 否 | 收件人（預設 `jennie@youjue.ai`） |
 | `SENTRY_DSN` | 否 | Sentry 錯誤追蹤 DSN |
 
 ---
@@ -245,9 +272,17 @@ docker run -p 8000:8000 youjue-website
 ### 2026-03-05（聯繫表單改用 Web3Forms + 信箱更換）
 
 #### 變更內容
-- **聯絡信箱**：全站 `contact@youjue.ai` → `jennie@youjue.ai`（6 個檔案）
-- **聯繫表單**：移除自建後端 API 呼叫 + mailto fallback，改用 **Web3Forms**（純前端，免費 250 封/月）
-- **待辦**：需到 web3forms.com 用 jennie@youjue.ai 取得 Access Key，填入 `frontend/js/app.js` 的 `WEB3FORMS_KEY`
+1. **聯絡信箱更換**：全站 `contact@youjue.ai` → `jennie@youjue.ai`
+   - 涉及 6 個檔案：`index.html`、`privacy.html`、`terms.html`、`app.js`、`.env.example`、`contact.py`
+2. **聯繫表單重構**：移除自建後端 API 呼叫 + mailto fallback，改用 **Web3Forms**
+   - 服務：Web3Forms Free（250 封/月，無時間限制）
+   - 帳號：jennie@youjue.ai
+   - Access Key：`4baa0302-03cf-4bd5-b3b1-4d3d7eb698a2`（已填入 `frontend/js/app.js`）
+   - 實測結果：送出成功，jennie@youjue.ai 信箱已收到測試訊息 ✓
+
+#### 決策記錄
+- **為何不部署 Railway**：目前後端唯一功能是聯繫表單寄信，Web3Forms 純前端即可完成，省去後端伺服器維護成本與月費
+- **為何選 Web3Forms**：免費 250 封/月、無時間限制、純前端整合最簡單、使用者一鍵送出不離開頁面
 
 ---
 
