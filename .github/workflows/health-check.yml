@@ -1,0 +1,36 @@
+name: Health Check
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Every 30 minutes
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Health Check
+        run: |
+          API_URL="${{ secrets.API_URL }}"
+          if [ -z "$API_URL" ]; then
+            echo "API_URL secret not set, skipping"
+            exit 0
+          fi
+
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "$API_URL/health")
+
+          if [ "$STATUS" = "200" ]; then
+            echo "Health check passed (HTTP $STATUS)"
+          else
+            echo "Health check FAILED (HTTP $STATUS)"
+            exit 1
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Health Check" >> $GITHUB_STEP_SUMMARY
+          echo "Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "Time: $(date -u)" >> $GITHUB_STEP_SUMMARY
