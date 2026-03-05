@@ -242,6 +242,13 @@ docker run -p 8000:8000 youjue-website
 ##### 測試
 - 5 個測試（健康檢查 + 聯繫表單）
 
+### 2026-03-05（聯繫表單改用 Web3Forms + 信箱更換）
+
+#### 變更內容
+- **聯絡信箱**：全站 `contact@youjue.ai` → `jennie@youjue.ai`（6 個檔案）
+- **聯繫表單**：移除自建後端 API 呼叫 + mailto fallback，改用 **Web3Forms**（純前端，免費 250 封/月）
+- **待辦**：需到 web3forms.com 用 jennie@youjue.ai 取得 Access Key，填入 `frontend/js/app.js` 的 `WEB3FORMS_KEY`
+
 ---
 
 ## 注意事項
@@ -249,8 +256,9 @@ docker run -p 8000:8000 youjue-website
 1. **前端是純靜態** — 無 build 步驟，直接部署 HTML/CSS/JS
 2. **官網網域是 www.youjue.ai** — Hostinger 管理 DNS
 3. **珍妮 AI 的網址是 jennie.youjue.ai** — 不同子域名，是另一個產品
-4. **聯繫表單有 fallback** — 後端不可用時自動開啟 `mailto:` 連結
-5. **Resend 和 Sentry 為選用** — 未設定環境變數時靜默跳過
+4. **聯繫表單使用 Web3Forms** — 純前端直接送出，不需自建後端，信件寄至 jennie@youjue.ai
+5. **公司聯絡信箱是 jennie@youjue.ai** — 非 contact@youjue.ai
+6. **Resend 和 Sentry 為選用** — 未設定環境變數時靜默跳過
 
 ---
 

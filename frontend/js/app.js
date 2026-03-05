@@ -136,7 +136,10 @@
         document.head.appendChild(style);
     }
 
-    // ---- Contact Form ----
+    // ---- Contact Form (Web3Forms) ----
+    // 取得 Access Key：https://web3forms.com （用 jennie@youjue.ai 註冊）
+    var WEB3FORMS_KEY = '4baa0302-03cf-4bd5-b3b1-4d3d7eb698a2';
+
     function initContactForm() {
         var form = document.getElementById('contactForm');
         if (!form) return;
@@ -147,52 +150,52 @@
             var submitBtn = document.getElementById('contactSubmitBtn');
             var originalText = submitBtn.innerHTML;
 
-            // Show loading state
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 送出中...';
 
+            var subjectMap = {
+                'product': '產品諮詢',
+                'enterprise': '企業合作洽談',
+                'technical': '技術支援',
+                'media': '媒體採訪',
+                'other': '其他'
+            };
+
+            var subjectValue = document.getElementById('contactSubject').value;
             var formData = {
+                access_key: WEB3FORMS_KEY,
+                subject: '【官網聯繫】' + (subjectMap[subjectValue] || subjectValue),
+                from_name: '宥爵官網聯繫表單',
                 name: document.getElementById('contactName').value.trim(),
                 email: document.getElementById('contactEmail').value.trim(),
-                company: document.getElementById('contactCompany').value.trim(),
-                subject: document.getElementById('contactSubject').value,
+                company: document.getElementById('contactCompany').value.trim() || '未填寫',
                 message: document.getElementById('contactMessage').value.trim()
             };
 
-            // Try to submit to backend API
-            var apiUrl = getApiUrl();
-            fetch(apiUrl + '/api/contact', {
+            fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             })
             .then(function(response) {
-                if (!response.ok) throw new Error('API error');
                 return response.json();
             })
-            .then(function() {
-                showToast('success', '訊息已送出！我們會儘快與您聯繫。');
-                form.reset();
+            .then(function(data) {
+                if (data.success) {
+                    showToast('success', '訊息已送出！我們會儘快與您聯繫。');
+                    form.reset();
+                } else {
+                    showToast('error', '送出失敗，請稍後再試或直接寄信至 jennie@youjue.ai');
+                }
             })
             .catch(function() {
-                // API 不可用時顯示友善提示，不開啟 mailto
-                showToast('error', '訊息送出失敗，請稍後再試或直接寄信至 jennie@youjue.ai');
+                showToast('error', '網路連線異常，請稍後再試或直接寄信至 jennie@youjue.ai');
             })
             .finally(function() {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
             });
         });
-    }
-
-    // ---- API URL Helper ----
-    function getApiUrl() {
-        // In production, the API is on a different domain (Railway)
-        // In development, it's localhost:8000
-        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            return 'http://localhost:8000';
-        }
-        return window.API_URL || 'https://api.youjue.ai';
     }
 
     // ---- Toast Notification ----
