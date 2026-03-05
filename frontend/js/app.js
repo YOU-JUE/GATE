@@ -138,7 +138,7 @@
 
     // ---- Contact Form (Web3Forms) ----
     // 取得 Access Key：https://web3forms.com （用 jennie@youjue.ai 註冊）
-    var WEB3FORMS_KEY = 'YOUR_ACCESS_KEY_HERE';
+    var WEB3FORMS_KEY = '4baa0302-03cf-4bd5-b3b1-4d3d7eb698a2';
 
     function initContactForm() {
         var form = document.getElementById('contactForm');
