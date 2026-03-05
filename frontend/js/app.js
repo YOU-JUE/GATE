@@ -175,18 +175,8 @@
                 form.reset();
             })
             .catch(function() {
-                // Fallback: mailto
-                var mailtoUrl = 'mailto:jennie@youjue.ai'
-                    + '?subject=' + encodeURIComponent('[官網聯繫] ' + formData.subject)
-                    + '&body=' + encodeURIComponent(
-                        '姓名：' + formData.name + '\n'
-                        + '信箱：' + formData.email + '\n'
-                        + '公司：' + (formData.company || '未填寫') + '\n'
-                        + '主旨：' + formData.subject + '\n\n'
-                        + formData.message
-                    );
-                window.location.href = mailtoUrl;
-                showToast('info', '正在開啟您的郵件程式...');
+                // API 不可用時顯示友善提示，不開啟 mailto
+                showToast('error', '訊息送出失敗，請稍後再試或直接寄信至 jennie@youjue.ai');
             })
             .finally(function() {
                 submitBtn.disabled = false;
