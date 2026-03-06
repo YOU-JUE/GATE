@@ -264,11 +264,43 @@
         var dots = document.querySelectorAll('.carousel-dot');
         var prevBtn = document.getElementById('carouselPrev');
         var nextBtn = document.getElementById('carouselNext');
+        var browserUrl = document.getElementById('browserUrl');
+        var browserBadge = document.getElementById('browserBadge');
         if (!slides.length) return;
 
         var current = 0;
         var total = slides.length;
         var autoplayInterval;
+
+        // Scale iframes to fit the carousel track
+        function scaleIframes() {
+            var track = document.getElementById('carouselTrack');
+            if (!track) return;
+            var trackW = track.offsetWidth;
+            var iframes = document.querySelectorAll('.slide-iframe');
+            iframes.forEach(function(iframe) {
+                var scale = trackW / 1920;
+                iframe.style.transform = 'scale(' + scale + ')';
+            });
+        }
+
+        // Badge HTML templates
+        var badgeMap = {
+            live: '<span class="badge-live"><i class="fas fa-circle"></i> 已上線</span>',
+            coming: '<span class="badge-coming"><i class="fas fa-clock"></i> Coming Soon</span>',
+            planning: '<span class="badge-planning"><i class="fas fa-drafting-compass"></i> Planning</span>'
+        };
+
+        function updateBrowserBar(slide) {
+            var url = slide.getAttribute('data-url') || '';
+            var badge = slide.getAttribute('data-badge') || '';
+            if (browserUrl) {
+                browserUrl.innerHTML = '<i class="fas fa-lock"></i><span>' + url + '</span>';
+            }
+            if (browserBadge) {
+                browserBadge.innerHTML = badgeMap[badge] || '';
+            }
+        }
 
         function goTo(index) {
             slides[current].classList.remove('active');
@@ -276,13 +308,14 @@
             current = (index + total) % total;
             slides[current].classList.add('active');
             dots[current].classList.add('active');
+            updateBrowserBar(slides[current]);
         }
 
         function next() { goTo(current + 1); }
         function prev() { goTo(current - 1); }
 
         function startAutoplay() {
-            autoplayInterval = setInterval(next, 5000);
+            autoplayInterval = setInterval(next, 8000);
         }
 
         function resetAutoplay() {
@@ -304,6 +337,10 @@
             });
         });
 
+        // Init scaling & autoplay
+        scaleIframes();
+        window.addEventListener('resize', scaleIframes);
+        updateBrowserBar(slides[0]);
         startAutoplay();
     }
 

@@ -60,56 +60,50 @@
             <!-- Product Showcase Carousel -->
             <div class="hero-carousel" id="heroCarousel">
                 <div class="carousel-screen">
+                    <!-- Browser Chrome Bar -->
+                    <div class="browser-bar">
+                        <div class="browser-dots">
+                            <span class="browser-dot red"></span>
+                            <span class="browser-dot yellow"></span>
+                            <span class="browser-dot green"></span>
+                        </div>
+                        <div class="browser-url" id="browserUrl">
+                            <i class="fas fa-lock"></i>
+                            <span>jennie.youjue.ai</span>
+                        </div>
+                        <div class="browser-badge" id="browserBadge">
+                            <span class="badge-live"><i class="fas fa-circle"></i> 已上線</span>
+                        </div>
+                    </div>
+                    <!-- Slide Viewport -->
                     <div class="carousel-track" id="carouselTrack">
-                        <!-- Slide 1: 珍妮 AI -->
-                        <div class="carousel-slide active">
-                            <div class="slide-badge live">
-                                <i class="fas fa-circle"></i> 已上線
+                        <!-- Slide 1: 珍妮 AI (iframe) -->
+                        <div class="carousel-slide active" data-url="jennie.youjue.ai" data-badge="live" data-badge-text="已上線">
+                            <div class="slide-iframe-wrap">
+                                <iframe src="https://jennie.youjue.ai" class="slide-iframe" loading="lazy" sandbox="allow-scripts allow-same-origin" title="珍妮 Ai"></iframe>
                             </div>
-                            <div class="slide-content">
-                                <div class="slide-icon">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <h3 class="slide-title">珍妮 Ai</h3>
-                                <p class="slide-subtitle">Jennie AI — 有溫度的智慧助理</p>
-                                <p class="slide-desc">12 種人格風格 · 多格式文件分析 · 語音互動 · 6 大行業賦能</p>
-                                <a href="https://jennie.youjue.ai" target="_blank" class="slide-btn">
-                                    <i class="fas fa-external-link-alt"></i> 前往體驗
-                                </a>
+                            <a href="https://jennie.youjue.ai" target="_blank" class="slide-overlay-btn">
+                                <i class="fas fa-external-link-alt"></i> 前往體驗珍妮 Ai
+                            </a>
+                        </div>
+                        <!-- Slide 2: 產業知識傳承系統 (placeholder) -->
+                        <div class="carousel-slide" data-url="coming-soon" data-badge="coming" data-badge-text="Coming Soon">
+                            <div class="slide-placeholder">
+                                <div class="placeholder-icon"><i class="fas fa-industry"></i></div>
+                                <h3 class="placeholder-title">產業知識傳承系統</h3>
+                                <p class="placeholder-subtitle">老師傅經驗，AI 永久傳承</p>
+                                <p class="placeholder-desc">企業知識萃取 · 經驗數位化 · 新人即戰力培訓 · 智慧問答</p>
+                                <span class="placeholder-badge"><i class="fas fa-bell"></i> 敬請期待</span>
                             </div>
                         </div>
-                        <!-- Slide 2: 產業知識傳承系統 -->
-                        <div class="carousel-slide">
-                            <div class="slide-badge coming">
-                                <i class="fas fa-clock"></i> Coming Soon
-                            </div>
-                            <div class="slide-content">
-                                <div class="slide-icon">
-                                    <i class="fas fa-industry"></i>
-                                </div>
-                                <h3 class="slide-title">產業知識傳承系統</h3>
-                                <p class="slide-subtitle">老師傅經驗，AI 永久傳承</p>
-                                <p class="slide-desc">企業知識萃取 · 經驗數位化 · 新人即戰力培訓 · 智慧問答</p>
-                                <span class="slide-btn disabled">
-                                    <i class="fas fa-bell"></i> 敬請期待
-                                </span>
-                            </div>
-                        </div>
-                        <!-- Slide 3: 智慧客服中心 -->
-                        <div class="carousel-slide">
-                            <div class="slide-badge planning">
-                                <i class="fas fa-drafting-compass"></i> Planning
-                            </div>
-                            <div class="slide-content">
-                                <div class="slide-icon">
-                                    <i class="fas fa-headset"></i>
-                                </div>
-                                <h3 class="slide-title">智慧客服中心</h3>
-                                <p class="slide-subtitle">比傳統客服更懂你的客戶</p>
-                                <p class="slide-desc">行業知識整合 · 情緒感知回應 · 多管道支援 · 即時分析</p>
-                                <span class="slide-btn disabled">
-                                    <i class="fas fa-bell"></i> 敬請期待
-                                </span>
+                        <!-- Slide 3: 智慧客服中心 (placeholder) -->
+                        <div class="carousel-slide" data-url="coming-soon" data-badge="planning" data-badge-text="Planning">
+                            <div class="slide-placeholder">
+                                <div class="placeholder-icon"><i class="fas fa-headset"></i></div>
+                                <h3 class="placeholder-title">智慧客服中心</h3>
+                                <p class="placeholder-subtitle">比傳統客服更懂你的客戶</p>
+                                <p class="placeholder-desc">行業知識整合 · 情緒感知回應 · 多管道支援 · 即時分析</p>
+                                <span class="placeholder-badge"><i class="fas fa-bell"></i> 敬請期待</span>
                             </div>
                         </div>
                     </div>
