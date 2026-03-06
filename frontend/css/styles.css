@@ -1718,7 +1718,7 @@ img {
     .hero-title-highlight { font-size: 2.5rem; }
     .hero-subtitle { font-size: 1rem; }
     .hero-subtitle br { display: none; }
-    .hero-stats { flex-direction: column; gap: 20px; align-items: center; }
+    .hero-stats { flex-direction: column; gap: 20px; align-items: flex-start; width: fit-content; margin-left: auto; margin-right: auto; }
     .hero-actions { flex-direction: column; align-items: center; }
 
     .hero-carousel { width: 100%; }
