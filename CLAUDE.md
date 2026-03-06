@@ -346,6 +346,16 @@ docker run -p 8000:8000 youjue-website
 | `.slide-overlay-btn` | iframe Slide 右下「前往體驗」按鈕 |
 | `.badge-live` / `.badge-coming` / `.badge-planning` | 狀態徽章（綠/黃/紫） |
 
+### 2026-03-06（Apple Touch Icon + Favicon）
+
+#### 變更內容
+- 全站 4 個頁面（`index.html`、`products.html`、`privacy.html`、`terms.html`）加入：
+  - `<link rel="apple-touch-icon" href="YJLOGO.png">` — iPhone「加入主畫面」時顯示公司 LOGO
+  - `<link rel="icon" type="image/png" href="YJLOGO.png">` — 瀏覽器分頁 favicon
+  - `<meta name="apple-mobile-web-app-title" content="宥爵智能科技">` — 主畫面捷徑名稱
+- LOGO 來源：`YJLOGO.png`（1252×1102 PNG，iOS 自動縮放為 180×180）
+- 實測結果：iPhone「分享 → 加入主畫面」icon 正常顯示公司 LOGO ✓
+
 ---
 
 ## 注意事項
