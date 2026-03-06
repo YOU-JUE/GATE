@@ -1720,6 +1720,7 @@ img {
     .hero-subtitle br { display: none; }
     .hero-stats { flex-direction: column; gap: 20px; align-items: flex-start; width: fit-content; margin-left: auto; margin-right: auto; }
     .hero-actions { flex-direction: column; align-items: center; }
+    .hero-scroll { display: none; }
 
     .hero-carousel { width: 100%; }
     .carousel-arrow { width: 36px; height: 36px; font-size: 0.8rem; }
