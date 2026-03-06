@@ -1739,7 +1739,7 @@ img {
     .philosophy-flow { flex-direction: column; }
     .flow-arrow { transform: rotate(90deg); }
 
-    .product-featured-info { padding: 32px 24px; }
+    .product-featured-info { padding: 56px 24px 32px; }
     .product-features { grid-template-columns: 1fr; }
     .product-featured-actions { flex-direction: column; }
     .product-featured-visual { padding: 24px; }
