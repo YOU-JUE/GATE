@@ -72,6 +72,7 @@ frontend/
   terms.html        — 服務條款
   css/styles.css    — 主樣式檔
   js/app.js         — 主應用邏輯
+  YJLOGO.png        — 公司 LOGO（導覽列 + Footer 共用）
   images/           — 圖片資源
   vercel.json       — Vercel 部署設定
 
@@ -104,7 +105,7 @@ CLAUDE.md           — 本文件（交接日誌）
 | 區塊 | ID | 說明 |
 |------|------|------|
 | 導覽列 | `navbar` | 固定頂部，滾動變色，手機版漢堡選單 |
-| Hero | `hero` | 全螢幕視差背景 + 粒子動畫 + 品牌標語 |
+| Hero | `hero` | 全螢幕視差背景 + 粒子動畫 + 品牌標語 + 作品輪播屏幕（3 slides） |
 | 關於我們 | `about` | 公司簡介 + 四大核心價值卡片 |
 | 核心理念 | `philosophy` | 創新/溫度/傳承三大理念 + 視覺化流程圖 |
 | 產品服務 | `products` | 珍妮 AI 旗艦產品展示 + 行業支援 + 未來規劃 |
@@ -283,6 +284,67 @@ docker run -p 8000:8000 youjue-website
 #### 決策記錄
 - **為何不部署 Railway**：目前後端唯一功能是聯繫表單寄信，Web3Forms 純前端即可完成，省去後端伺服器維護成本與月費
 - **為何選 Web3Forms**：免費 250 封/月、無時間限制、純前端整合最簡單、使用者一鍵送出不離開頁面
+
+### 2026-03-06（公司 LOGO + Hero 作品輪播屏幕）
+
+#### 變更內容
+
+1. **公司 LOGO 加入**
+   - 檔案：`frontend/YJLOGO.png`（根目錄，非 images/）
+   - 導覽列（`.nav-logo-img`）與 Footer（`.footer-logo-img`）皆使用同一檔案
+   - 導覽列 LOGO：48×48px，Footer LOGO：44×44px
+
+2. **Hero 區新增「作品輪播屏幕」**
+   - 仿瀏覽器 Chrome 外框（圓角 + 三色圓點 + 網址列 + 狀態徽章）
+   - 輪播寬度：`80vw`，比例 `16:9`
+   - 共 3 個 Slide：
+
+   | Slide | 產品 | 類型 | 狀態徽章 | data-url |
+   |-------|------|------|---------|----------|
+   | 1 | 珍妮 Ai | iframe 嵌入（`https://jennie.youjue.ai`） | 已上線（綠色） | `jennie.youjue.ai` |
+   | 2 | 產業知識傳承系統 | placeholder 文案 | Coming Soon（黃色） | `coming-soon` |
+   | 3 | 智慧客服中心 | placeholder 文案 | Planning（紫色） | `coming-soon` |
+
+   - iframe 投影機制：原始 1920×1080 iframe 用 `transform: scale()` 縮放至容器大小（JS 動態計算）
+   - 自動輪播：每 6 秒切換，hover 暫停
+   - 控制項：左右箭頭 + 底部圓點指示器
+
+3. **輪播屏幕置中修復**
+   - `.hero-content` 移除 `max-width: 900px`，改為 `width: 100%`
+   - 文案區（`.hero-title`、`.hero-subtitle`、`.hero-actions`、`.hero-stats`）各自加 `max-width: 900px` + `margin: auto`
+
+4. **輪播 placeholder 上下置中修復**
+   - `.carousel-slide.active` 移除 `position: relative`，所有 slide 保持 `position: absolute; inset: 0`
+   - `.slide-placeholder` 與 `.slide-iframe-wrap` 改為 `position: absolute; inset: 0` 滿版
+   - 由 `.carousel-track` 的 `aspect-ratio: 16/9` 控制整體高度
+
+#### 技術參數
+
+| 參數 | 值 |
+|------|------|
+| 輪播寬度 | `80vw` |
+| 輪播比例 | `16:9`（aspect-ratio） |
+| iframe 原始尺寸 | `1920 × 1080` |
+| 自動播放間隔 | 6 秒 |
+| 切換動畫 | `opacity 0.6s ease` |
+| placeholder 背景 | `linear-gradient(135deg, #1a1a2e, #16213e, #0f3460)` |
+
+#### 新增 CSS 類別
+
+| 類別 | 說明 |
+|------|------|
+| `.hero-carousel` | 輪播最外層容器 |
+| `.carousel-screen` | 仿瀏覽器外框（圓角 + 陰影） |
+| `.browser-bar` / `.browser-dots` / `.browser-url` / `.browser-badge` | 瀏覽器 Chrome 列 |
+| `.carousel-track` | Slide 視窗（aspect-ratio: 16/9） |
+| `.carousel-slide` | 個別 Slide（absolute 定位） |
+| `.slide-iframe-wrap` / `.slide-iframe` | iframe 投影 Slide |
+| `.slide-placeholder` | Coming Soon 文案 Slide |
+| `.placeholder-icon` / `.placeholder-title` / `.placeholder-subtitle` / `.placeholder-desc` / `.placeholder-badge` | placeholder 內容元素 |
+| `.carousel-arrow` / `.carousel-prev` / `.carousel-next` | 左右箭頭按鈕 |
+| `.carousel-dots` / `.carousel-dot` | 底部圓點指示器 |
+| `.slide-overlay-btn` | iframe Slide 右下「前往體驗」按鈕 |
+| `.badge-live` / `.badge-coming` / `.badge-planning` | 狀態徽章（綠/黃/紫） |
 
 ---
 
