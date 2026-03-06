@@ -552,15 +552,14 @@ img {
 }
 
 .carousel-slide.active {
-    position: relative;
     opacity: 1;
     pointer-events: auto;
 }
 
 /* iframe slide */
 .slide-iframe-wrap {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: 0;
     overflow: hidden;
 }
 
@@ -598,8 +597,8 @@ img {
 
 /* Placeholder slides (coming soon) */
 .slide-placeholder {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
