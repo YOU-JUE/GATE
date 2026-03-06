@@ -29,9 +29,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
-                <div class="logo-icon">
-                    <i class="fas fa-brain"></i>
-                </div>
+                <img src="YJLOGO.png" alt="宥爵智能科技 Logo" class="nav-logo-img">
                 <div class="logo-text">
                     <span class="logo-main">宥爵智能科技</span>
                     <span class="logo-sub">YouJue Intelligent Technology</span>
@@ -59,10 +57,79 @@
             <div class="hero-particles" id="heroParticles"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-microchip"></i>
-                <span>AI Technology Company</span>
+            <!-- Product Showcase Carousel -->
+            <div class="hero-carousel" id="heroCarousel">
+                <div class="carousel-screen">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Slide 1: 珍妮 AI -->
+                        <div class="carousel-slide active">
+                            <div class="slide-badge live">
+                                <i class="fas fa-circle"></i> 已上線
+                            </div>
+                            <div class="slide-content">
+                                <div class="slide-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h3 class="slide-title">珍妮 Ai</h3>
+                                <p class="slide-subtitle">Jennie AI — 有溫度的智慧助理</p>
+                                <p class="slide-desc">12 種人格風格 · 多格式文件分析 · 語音互動 · 6 大行業賦能</p>
+                                <a href="https://jennie.youjue.ai" target="_blank" class="slide-btn">
+                                    <i class="fas fa-external-link-alt"></i> 前往體驗
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Slide 2: 產業知識傳承系統 -->
+                        <div class="carousel-slide">
+                            <div class="slide-badge coming">
+                                <i class="fas fa-clock"></i> Coming Soon
+                            </div>
+                            <div class="slide-content">
+                                <div class="slide-icon">
+                                    <i class="fas fa-industry"></i>
+                                </div>
+                                <h3 class="slide-title">產業知識傳承系統</h3>
+                                <p class="slide-subtitle">老師傅經驗，AI 永久傳承</p>
+                                <p class="slide-desc">企業知識萃取 · 經驗數位化 · 新人即戰力培訓 · 智慧問答</p>
+                                <span class="slide-btn disabled">
+                                    <i class="fas fa-bell"></i> 敬請期待
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Slide 3: 智慧客服中心 -->
+                        <div class="carousel-slide">
+                            <div class="slide-badge planning">
+                                <i class="fas fa-drafting-compass"></i> Planning
+                            </div>
+                            <div class="slide-content">
+                                <div class="slide-icon">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                                <h3 class="slide-title">智慧客服中心</h3>
+                                <p class="slide-subtitle">比傳統客服更懂你的客戶</p>
+                                <p class="slide-desc">行業知識整合 · 情緒感知回應 · 多管道支援 · 即時分析</p>
+                                <span class="slide-btn disabled">
+                                    <i class="fas fa-bell"></i> 敬請期待
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Carousel Controls -->
+                    <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="上一個">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="下一個">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <!-- Carousel Dots -->
+                <div class="carousel-dots" id="carouselDots">
+                    <button class="carousel-dot active" data-index="0" aria-label="珍妮 Ai"></button>
+                    <button class="carousel-dot" data-index="1" aria-label="產業知識傳承系統"></button>
+                    <button class="carousel-dot" data-index="2" aria-label="智慧客服中心"></button>
+                </div>
             </div>
+
+            <!-- Hero Text (below carousel) -->
             <h1 class="hero-title">
                 <span class="hero-title-line">讓 AI 擁有</span>
                 <span class="hero-title-highlight">老師傅的溫度</span>
@@ -594,7 +661,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <div class="logo-icon"><i class="fas fa-brain"></i></div>
+                        <img src="YJLOGO.png" alt="宥爵智能科技 Logo" class="footer-logo-img">
                         <div class="logo-text">
                             <span class="logo-main">宥爵智能科技</span>
                             <span class="logo-sub">YouJue Intelligent Technology</span>
