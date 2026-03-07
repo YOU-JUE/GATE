@@ -668,14 +668,17 @@ img {
 
 .example-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 12px 18px;
+    justify-content: center;
+    gap: 6px;
+    padding: 20px 16px;
     border-radius: var(--radius-sm);
     color: #fff;
-    font-size: 0.78rem;
-    line-height: 1.4;
-    font-weight: 500;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 600;
+    text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.12);
     transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -686,9 +689,10 @@ img {
 }
 
 .example-card i {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     flex-shrink: 0;
     opacity: 0.9;
+    margin-bottom: 2px;
 }
 
 /* 物流業 — 藍綠色 */
@@ -1810,8 +1814,8 @@ img {
     .placeholder-subtitle { margin-bottom: 6px; }
     .placeholder-desc { margin-bottom: 16px; }
     .placeholder-examples { gap: 8px; margin-top: 12px; }
-    .example-card { font-size: 0.6rem; padding: 8px 10px; gap: 6px; }
-    .example-card i { font-size: 0.85rem; }
+    .example-card { font-size: 0.75rem; padding: 14px 10px; gap: 4px; }
+    .example-card i { font-size: 1.2rem; }
     .placeholder-note { font-size: 0.65rem; margin-top: 10px; }
 
     .section { padding: 64px 0; }
