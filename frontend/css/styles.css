@@ -758,13 +758,13 @@ img {
 .placeholder-note {
     margin-top: 16px;
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.55);
+    color: #fcd34d;
     line-height: 1.7;
     letter-spacing: 0.3px;
 }
 
 .placeholder-note strong {
-    color: rgba(255, 255, 255, 0.85);
+    color: #fde68a;
 }
 
 /* Carousel Controls */
