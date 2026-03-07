@@ -660,64 +660,99 @@ img {
 .placeholder-examples {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 20px;
-    max-width: 560px;
+    gap: 16px;
+    margin-top: 24px;
+    max-width: 750px;
     width: 100%;
 }
 
 .example-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 12px 18px;
-    border-radius: var(--radius-sm);
+    justify-content: center;
+    gap: 4px;
+    padding: 28px 20px;
+    border-radius: var(--radius-lg);
     color: #fff;
-    font-size: 0.78rem;
-    line-height: 1.4;
-    font-weight: 500;
+    text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.12);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .example-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .example-card i {
-    font-size: 1.1rem;
+    font-size: 2rem;
     flex-shrink: 0;
-    opacity: 0.9;
+    margin-bottom: 8px;
+}
+
+/* 行業別 — 亮色漸層文字（類似珍妮 Ai 風格） */
+.card-industry {
+    font-size: 1.3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-cyan), var(--accent-warm));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+}
+
+/* 系統名稱 */
+.card-system {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
 }
 
 /* 物流業 — 藍綠色 */
 .card-logistics {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.35), rgba(59, 130, 246, 0.25));
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(59, 130, 246, 0.2));
     border-color: rgba(6, 182, 212, 0.4);
 }
 .card-logistics i { color: #67e8f9; }
+.card-logistics .card-industry {
+    background: linear-gradient(135deg, #67e8f9, #38bdf8, #a5f3fc);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 
 /* 食品業 — 翠綠色 */
 .card-food {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.35), rgba(52, 211, 153, 0.25));
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(52, 211, 153, 0.2));
     border-color: rgba(16, 185, 129, 0.4);
 }
 .card-food i { color: #6ee7b7; }
+.card-food .card-industry {
+    background: linear-gradient(135deg, #6ee7b7, #34d399, #a7f3d0);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 
 /* 倉儲業 — 琥珀色 */
 .card-warehouse {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.35), rgba(251, 191, 36, 0.25));
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.3), rgba(251, 191, 36, 0.2));
     border-color: rgba(245, 158, 11, 0.4);
 }
 .card-warehouse i { color: #fcd34d; }
+.card-warehouse .card-industry {
+    background: linear-gradient(135deg, #fcd34d, #fbbf24, #fde68a);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 
 /* 倉儲業 AR — 紫色 */
 .card-ar {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(167, 139, 250, 0.25));
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(167, 139, 250, 0.2));
     border-color: rgba(139, 92, 246, 0.4);
 }
 .card-ar i { color: #c4b5fd; }
+.card-ar .card-industry {
+    background: linear-gradient(135deg, #c4b5fd, #a78bfa, #ddd6fe);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
 
 /* 說明文字 */
 .placeholder-note {
@@ -1809,9 +1844,11 @@ img {
     .placeholder-icon { margin-bottom: 12px; }
     .placeholder-subtitle { margin-bottom: 6px; }
     .placeholder-desc { margin-bottom: 16px; }
-    .placeholder-examples { gap: 8px; margin-top: 12px; }
-    .example-card { font-size: 0.6rem; padding: 8px 10px; gap: 6px; }
-    .example-card i { font-size: 0.85rem; }
+    .placeholder-examples { gap: 10px; margin-top: 14px; }
+    .example-card { padding: 16px 10px; gap: 2px; }
+    .example-card i { font-size: 1.3rem; margin-bottom: 4px; }
+    .card-industry { font-size: 0.9rem; }
+    .card-system { font-size: 0.8rem; }
     .placeholder-note { font-size: 0.65rem; margin-top: 10px; }
 
     .section { padding: 64px 0; }
