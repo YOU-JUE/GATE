@@ -605,7 +605,8 @@ img {
     justify-content: center;
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     text-align: center;
-    padding: 40px;
+    padding: 24px 40px;
+    overflow-y: auto;
 }
 
 .placeholder-icon {
@@ -653,6 +654,36 @@ img {
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.9rem;
     font-weight: 600;
+}
+
+/* Placeholder Example Cards */
+.placeholder-examples {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 24px;
+    max-width: 700px;
+}
+
+.example-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: var(--radius-sm);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.example-card i {
+    font-size: 0.9rem;
+    color: var(--primary-light);
+    flex-shrink: 0;
 }
 
 /* Carousel Controls */
@@ -1729,6 +1760,12 @@ img {
     .slide-overlay-btn { bottom: 12px; right: 12px; padding: 8px 18px; font-size: 0.8rem; }
     .placeholder-title { font-size: 1.5rem; }
     .placeholder-icon { width: 56px; height: 56px; font-size: 1.4rem; }
+    .placeholder-icon { margin-bottom: 12px; }
+    .placeholder-subtitle { margin-bottom: 6px; }
+    .placeholder-desc { margin-bottom: 16px; }
+    .placeholder-examples { gap: 8px; margin-top: 16px; }
+    .example-card { font-size: 0.65rem; padding: 6px 10px; gap: 6px; }
+    .example-card i { font-size: 0.75rem; }
 
     .section { padding: 64px 0; }
     .section-title { font-size: 2rem; }
